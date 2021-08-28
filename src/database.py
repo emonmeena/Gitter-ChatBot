@@ -47,7 +47,7 @@ def fetch_projects():
         }
         lang = obj["language"]
         if lang:
-            p["tags"].append(lang)
+            p["tags"].append(lang.lower())
         progress+=1
         collection.insert_one(p)
         print("Done uploading {}/{}".format(progress, total))
