@@ -45,9 +45,12 @@ def fetch_projects():
             "https://github.com/{}/labels/good%20first%20issue".format(
                 obj["full_name"]),
         }
+        lang = obj["language"]
+        if lang:
+            p["tags"].append(lang)
         progress+=1
-        print("Done uploading {}/{}".format(progress, total))
         collection.insert_one(p)
+        print("Done uploading {}/{}".format(progress, total))
     print("Process finished")
     return []
 
