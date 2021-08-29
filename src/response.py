@@ -59,9 +59,12 @@ def project_suggestion_answer(username, queries):
             ORGANIZATION_GITHUB_NAME, COMMUNITY_GITHUB)
     else:
         ans += "I have found few projects for you :)\n"
+    pack = 0    
     for _p_ in projects:
         ans += "- {} [Github repository]({}) [Gitter channel]({}) [good first issues]({})\n".format(
             _p_['name'], _p_['github-link'], _p_['gitter-link'],
             _p_['good-first-issues'])
-
+        pack += 1
+        if pack%16 == 0:
+            ans += "string_split\n" 
     return ans

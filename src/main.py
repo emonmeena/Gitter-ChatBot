@@ -30,7 +30,8 @@ def chat_bot():
             elif not message.startswith('**{}**'.format(CHATBOT_NAME)):
                 __data__ = data_extraction.process_message(message.lower(), 0)
                 if message.startswith('@' + CHATBOT_NAME + " -p"):
-                    __data__ = data_extraction.process_message(message.lower(), 3)
+                    __data__ = data_extraction.process_message(
+                        message.lower(), 3)
 
                 if __data__ == [-1]:
                     pass
@@ -43,7 +44,9 @@ def chat_bot():
                 else:
                     BOTANSWER = response.project_suggestion_answer(
                         message_sender, __data__)
-                    gitter.messages.send(ROOM, BOTANSWER)
+                    BOTANSWER = BOTANSWER.split("string_split")    
+                    for __ans__ in BOTANSWER:
+                        gitter.messages.send(ROOM, __ans__)
 
 
 if __name__ == "__main__":
